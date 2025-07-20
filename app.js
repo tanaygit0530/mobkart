@@ -28,7 +28,7 @@ const GoogleStrategy = require('./config/passportconfig')
 const mongoose = require('mongoose');
 const laptop = require('./models/laptop');
 
-mongoose.connect(process.env.DB_URI, {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
