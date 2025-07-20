@@ -27,14 +27,18 @@ const GoogleStrategy = require('./config/passportconfig')
 
 const mongoose = require('mongoose');
 const laptop = require('./models/laptop');
-mongoose.connect('mongodb://127.0.0.1:27017/MobKartapp')
+
+mongoose.connect(process.env.DB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then(() => {
-  console.log("Connected to MongoDB");
+  console.log("✅ Connected to MongoDB");
 })
-.catch((e) => {
-  console.log("Cannot connected to MongoDB!!!!");
-  console.log(e);
-})
+.catch(err => {
+  console.error("❌ MongoDB connection error:", err);
+});
+
 
 app.use(session({
   secret: 'thisisnotagoodsecret',
