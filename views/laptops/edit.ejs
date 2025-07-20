@@ -1,0 +1,135 @@
+<% layout('layout/boilerplate') %>
+<section class="section">
+  <div class="container">
+<form class="needs-validation" action="/mobkart/laptop/<%= laptop._id %>?_method=PUT" method="POST" novalidate enctype="multipart/form-data">
+  <div class="mb-2">
+    <label for="validationCustom01" class="form-label">Brand:</label>
+    <input type="text" class="form-control" id="validationCustom01" name="brand" value="<%= laptop.brand %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom02" class="form-label">Model:</label>
+    <input type="text" class="form-control" id="validationCustom02" name="model" value="<%= laptop.model %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom03" class="form-label">Price:</label>
+    <input type="number" class="form-control" id="validationCustom03" name="price" value="<%= laptop.price %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom04" class="form-label">Processor Tier:</label>
+    <input type="text" class="form-control" id="validationCustom04" name="processortier" value="<%= laptop.processortier %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom05" class="form-label">Processor Brand:</label>
+    <input type="text" class="form-control" id="validationCustom05" name="processorbrand" value="<%= laptop.processorbrand %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom06" class="form-label">Ram Memory (GB):</label>
+    <input type="number" class="form-control" id="validationCustom06" name="rammemmory" value="<%= laptop.rammemmory %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom07" class="form-label">Storage Type:</label>
+      <select name="primarystoragetype" id="validationCustom07" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="SSD" selected>SDD</option>
+      <option value="HDD" selected>HDD</option>
+    </select>
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom08" class="form-label">Storage Capacity (GB):</label>
+    <input type="number" class="form-control" id="validationCustom08" name="storagecapacity" value="<%= laptop.storagecapacity %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom09" class="form-label">GPU Brand:</label>
+    <input type="text" class="form-control" id="validationCustom09" name="gpubrand" value="<%= laptop.gpubrand %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom09" class="form-label">Whether It Is Touch Screen?</label>
+    <select name="istouchscreen" id="validationCustom09" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+       <option value="true" <%= laptop.istouchscreen === true ? 'selected': '' %>>Yes</option>
+      <option value="false" <%= laptop.istouchscreen === false ? 'selected': '' %>>No</option>
+    </select>
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+    </div>
+  <div class="mb-2">
+    <label for="validationCustom10" class="form-label">Display(inch):</label>
+    <input type="number" class="form-control" id="validationCustom10" name="displaysize" value="<%= laptop.displaysize %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom11" class="form-label">Resolution Width:</label>
+    <input type="number" class="form-control" id="validationCustom11" name="resolutionwidth" value="<%= laptop.resolutionwidth %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom12" class="form-label">Resolution Height:</label>
+    <input type="number" class="form-control" id="validationCustom12" name="resolutionheight" value="<%= laptop.resolutionheight %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom13" class="form-label">OS:</label>
+      <select name="os" id="validationCustom13" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+       <option value="Windows" selected>Windows</option>
+      <option value="MacOS" selected>MacOS</option>
+      <option value="LINUX" selected>LINUX</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom14" class="form-label">Warranty (yrs):</label>
+    <input type="number" class="form-control" id="validationCustom14" name="warranty" value="<%= laptop.warranty %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+      <div class="mb-2">
+    <label for="validationCustom15" class="form-label">Upload Images:</label>
+    <input type="file" class="form-control newstyle" id="validationCustom15" accept=".jpg,.jpeg,.png,.webp" name="image" multiple >
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div>
+    <button class="button sell">Update Product</button>
+  </div>
+</form>
+</div>
+</section>

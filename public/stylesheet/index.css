@@ -1,0 +1,25 @@
+.card.glow-card {
+  border-radius: 20px;
+  background-color: #1b1b1b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 12px rgba(0, 255, 255, 0.1),
+    0 6px 28px rgba(0, 195, 255, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+  color: #fff;
+}
+.card.glow-card:hover{
+  box-shadow:
+    0 0 16px rgba(0, 255, 255, 0.35),
+    0 8px 28px rgba(0, 195, 255, 0.35);
+}
+.head{
+  font-size: 50px;
+  padding-top: 48px;
+}
+.subhead{
+  font-size: large;
+  font-weight: bold;
+  padding-bottom: 48px;
+}
+

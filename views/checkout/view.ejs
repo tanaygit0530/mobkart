@@ -1,0 +1,98 @@
+<% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="/stylesheet/newstyle.css">
+
+<div class="container mt-5 mb-5">
+  <h2 class="text-center mb-4" style="font-size: 30px; color: cyan;">Checkout</h2>
+
+  <form action="/checkout" method="POST" class="needs-validation" novalidate>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="fullName" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control newstyle"
+          id="fullName"
+          name="fullName"
+          placeholder="Name"
+         required
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="phone" class="form-label">Phone Number</label>
+        <input
+          type="tel"
+          class="form-control newstyle"
+          id="phone"
+          name="phone"
+          placeholder="Add Your Numbers"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="address" class="form-label">Residential Address</label>
+      <textarea
+        class="form-control newstyle"
+        id="address"
+        name="address"
+        rows="3"
+        placeholder="House No, Street, Locality"
+        required
+      ></textarea>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <label for="city" class="form-label">City</label>
+        <input
+          type="text"
+          class="form-control newstyle"
+          id="city"
+          name="city"
+          placeholder="City"
+          required
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="state" class="form-label">State</label>
+        <input
+          type="text"
+          class="form-control newstyle"
+          id="state"
+          name="state"
+          placeholder="State"
+          required
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="pincode" class="form-label">Pincode</label>
+        <input
+          type="text"
+          class="form-control newstyle"
+          id="pincode"
+          name="pincode"
+          placeholder="Pincode"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-outline-info btn-lg">
+        Continue to Payment
+      </button>
+    </div>
+  </form>
+</div>
+<div class="card mt-4">
+  <div class="card-body newstyle">
+    <h5 class="card-title">Order Summary</h5>
+    <p>Subtotal: ₹<%= subtotal %></p>
+    <p>Shipping: ₹50</p>
+    <hr />
+    <h5>Total: ₹<%= total %></h5>
+  </div>
+</div>
+
+

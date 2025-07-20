@@ -1,0 +1,194 @@
+<% layout('layout/boilerplate') %>
+  <section class="section">
+  <div class="container">
+<form class="needs-validation" action="/mobkart/mobile/<%= mobile._id %>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate>
+  <div class="mb-2">
+    <label for="validationCustom01" class="form-label">Brand:</label>
+    <input type="text" class="form-control" id="validationCustom01" name="brand" value="<%= mobile.brand %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom02" class="form-label">Model:</label>
+    <input type="text" class="form-control" id="validationCustom02" name="model" value="<%= mobile.model %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom03" class="form-label">Price:</label>
+    <input type="number" class="form-control" id="validationCustom03" name="price" value="<%= mobile.price %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom04" class="form-label">Is Your Model compatible to 5g network?</label>
+    <select name="has5g" id="validationCustom04" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+       <option value="true" <%= mobile.has5g === true ? 'selected' : '' %>>Yes</option>
+      <option value="false" <%= mobile.has5g === false ? 'selected' : '' %>>No</option>
+    </select>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom05" class="form-label">Does your Model has NFC?</label>
+    <select name="hasNfc" id="validationCustom05" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+       <option value="true" <%= mobile.hasNfc === true ? 'selected' : '' %>>Yes</option>
+      <option value="false" <%= mobile.hasNfc === false ? 'selected' : '' %>>No</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom06" class="form-label">Does your Model has IRL Blaster?(Infrared Blaster)</label>
+    <select name="hasIrBlaster" id="validationCustom06" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+       <option value="true" <%= mobile.hasIrBlaster === true ? 'selected' : '' %>>Yes</option>
+      <option value="false" <%= mobile.hasIrBlaster === false ? 'selected' : '' %>>No</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom07" class="form-label">Processor:</label>
+    <input type="text" class="form-control" id="validationCustom07" name="processorBrand" value="<%= mobile.processorBrand %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom07" class="form-label">Battery Capacity(mAH):</label>
+    <input type="number" class="form-control" id="validationCustom07" name="batteryCapacity" value="<%= mobile.batteryCapacity %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom08" class="form-label">Is Fast Charging Available?</label>
+    <select name="fastChargingAvailable" id="validationCustom08" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+       <option value="true" <%= mobile.fastChargingAvailable === true ? 'selected' : '' %>>Yes</option>
+      <option value="false" <%= mobile.fastChargingAvailable === false ? 'selected' : '' %>>No</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom10" class="form-label">Ram Capacity(gb):</label>
+    <input type="number" class="form-control" id="validationCustom10" name="ramCapacity" value="<%= mobile.ramCapacity %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom11" class="form-label">Internal Memmory(gb):</label>
+    <input type="number" class="form-control" id="validationCustom11" name="internalMemory"  value="<%= mobile.internalMemory %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom12" class="form-label">Display (inch):</label>
+    <input type="number" class="form-control" id="validationCustom12" name="screenSize"  value="<%= mobile.screenSize %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom13" class="form-label">Refresh Rate(Hz):</label>
+    <input type="number" class="form-control" id="validationCustom13" name="refreshRate"  value="<%= mobile.refreshRate %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom14" class="form-label">Number of Cameras In Back(Rear camera):</label>
+    <input type="number" class="form-control" id="validationCustom14" name="numRearCameras"  value="<%= mobile.numRearCameras %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom15" class="form-label">Number of Cameras In Front(Front camera):</label>
+    <input type="number" class="form-control" id="validationCustom15" name="numFrontCameras"  value="<%= mobile.numFrontCameras %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom16" class="form-label">Operating System:</label>
+    <select name="os" id="validationCustom16" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+        <option value="Android" selected>Android</option>
+        <option value="IOS" selected>IOS</option>
+          </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom17" class="form-label">Rear Camera(MP):</label>
+    <input type="number" class="form-control" id="validationCustom17" name="primaryCameraRear"  value="<%= mobile.primaryCameraRear %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom18" class="form-label">Front Camera(MP):</label>
+    <input type="number" class="form-control" id="validationCustom18" name="primaryCameraFront"  value="<%= mobile.primaryCameraFront %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom19" class="form-label">Is Memory Can be Extendable?</label>
+    <select name="extendedMemoryAvailable" id="validationCustom19" class="form-select" required>
+      <option value="" disabled selected>Select an option</option>
+       <option value="true" <%= mobile.extendedMemoryAvailable === true ? 'selected' : '' %>>Yes</option>
+      <option value="false"  <%= mobile.extendedMemoryAvailable === false ? 'selected' : '' %>>No</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+    <div class="mb-2">
+    <label for="validationCustom20" class="form-label">Memmory Extended Upto(gb):</label>
+    <input type="number" class="form-control" id="validationCustom20" name="extendedUpto"  value="<%= mobile.extendedUpto %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+  <label for="validationCustom21" class="form-label">Number of Processor Cores:</label>
+  <input type="number" class="form-control" id="validationCustom21" name="numCores"  value="<%= mobile.numCores %>" required>
+</div>
+
+<div class="mb-2">
+  <label for="validationCustom22" class="form-label">Processor Speed (GHz):</label>
+  <input type="number" step="0.1" class="form-control" id="validationCustom22" name="processorSpeed"  value="<%= mobile.processorSpeed %>" required>
+</div>
+  <div class="mb-2">
+    <label for="validationCustom23" class="form-label">Charger Speed(W):</label>
+    <input type="number" class="form-control" id="validationCustom23" name="fastCharging" value="<%= mobile.fastCharging %>" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+    <div class="mb-2">
+    <label for="validationCustom24" class="form-label">Upload Images:</label>
+    <input type="file" class="form-control newstyle" id="validationCustom24" name="image" accept=".jpg,.jpeg,.png,.webp" multiple >
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div>
+    <button class="button sell">Edit</button>
+  </div>
+</form>
+</div>
+</section>

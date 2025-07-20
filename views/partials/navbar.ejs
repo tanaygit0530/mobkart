@@ -1,0 +1,48 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded-navbar px-4 py-3 mx-3 my-2">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light d-flex align-items-center" href="/mobkart">
+        <img src="https://img.icons8.com/?size=100&id=blpKd0mpBEOj&format=png&color=000000" width="28" height="28" class="me-2" alt="MobKart Logo">
+        <strong class="title">MobKart</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item nav1">
+            <a class="nav-link text-light"  href="/mobkart">Home</a>
+          </li>
+          <li class="nav-item nav1">
+            <a class="nav-link text-light"  href="/mobkart/mobile">Mobiles</a>
+          </li>
+          <li class="nav-item nav1">
+            <a class="nav-link text-light" href="/mobkart/laptop">Laptops</a>
+          </li>
+          <!-- <li class="nav-item nav1">
+            <a class="nav-link text-light" href="/mobkart/laptop">Laptops</a>
+          </li> -->
+          <li class="nav-item nav1">
+            <a class="nav-link text-light" href="/mobkart/mobile/cart">
+              <span class="icon"> <i class="bi bi-cart"></i></span>
+              <span>View Cart</span>
+            </a>
+          </li>
+
+        </ul>
+        <div class="navbar-nav">
+        <% if(!currentUser){ %>
+        <a class="nav-link text-light"  href="/mobkart/register">Register</a>    
+        <a class="nav-link text-light" href="/mobkart/login">Login</a>
+        <% }else{ %>
+        <a class="nav-link text-light" href="/mobkart/logout">Logout</a>
+        <% } %>
+      </div>
+      </div>
+
+
+    </div>
+  </nav>
+
+

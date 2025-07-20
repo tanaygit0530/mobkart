@@ -1,0 +1,62 @@
+/* .homeinfo1{
+  background-color: black;
+} */
+.head{
+  font-size: 70px;
+}
+.head2{
+  font-size: 45px;
+  font-weight: 500;
+}
+.subhead{
+  font-size: 20px;
+}
+.subhead2{
+  font-size: 25px;
+}
+.shopbtn{
+  padding-left: 7rem;
+  padding-right: 7rem;
+  border-radius: 25px;
+}
+.whymob{
+  /* background-color: black; */
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2), 0 4px 12px rgba(0, 195, 255, 0.2);
+}
+.whymob:hover{
+    box-shadow:
+    0 0 16px rgba(0, 255, 255, 0.35),
+    0 8px 28px rgba(0, 195, 255, 0.35);
+}
+.browsebtn{
+  padding-left: 7rem;
+  padding-right: 7rem;
+  border-radius: 25px;
+}
+.responsive-heading {
+  font-size: 2rem; /* base mobile size */
+}
+
+@media (min-width: 576px) {
+  .responsive-heading {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-heading {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .responsive-heading {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .responsive-heading {
+    font-size: 4rem;
+  }
+}

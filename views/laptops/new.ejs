@@ -1,0 +1,138 @@
+<% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="/stylesheet/newstyle.css">
+<section class="section">
+  <div class="container">
+<form class="needs-validation" action="/mobkart/laptop" method="POST" novalidate enctype="multipart/form-data">
+  <div class="mb-2">
+    <label for="validationCustom01" class="form-label">Brand:</label>
+    <input type="text" class="form-control newstyle" id="validationCustom01" name="brand" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom02" class="form-label">Model:</label>
+    <input type="text" class="form-control newstyle" id="validationCustom02" name="model" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom03" class="form-label">Price:</label>
+    <input type="number" class="form-control newstyle" id="validationCustom03" name="price" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom04" class="form-label">Processor Tier:</label>
+    <input type="text" class="form-control newstyle" id="validationCustom04" name="processortier" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom05" class="form-label">Processor Brand:</label>
+    <input type="text" class="form-control newstyle" id="validationCustom05" name="processorbrand" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom06" class="form-label">Ram Memory (GB):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom06" name="rammemmory" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="field">
+  <div class="mb-2">
+    <label for="validationCustom07" class="form-label">Storage Type:</label>
+      <select name="primarystoragetype" id="validationCustom07" class="form-select newstyle" required>
+      <option selected disabled value="">Select an option</option>
+      <option value="SSD">SDD</option>
+      <option value="HDD">HDD</option>
+    </select>
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom08" class="form-label">Storage Capacity (GB):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom08" name="storagecapacity" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom09" class="form-label">GPU Brand:</label>
+    <input type="text" class="form-control newstyle" id="validationCustom09" name="gpubrand" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom09" class="form-label">Whether It Is Touch Screen?</label>
+    <select name="istouchscreen" id="validationCustom09" class="form-select newstyle" required>
+      <option selected disabled value="">Select an option</option>
+       <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+    </div>
+  <div class="mb-2">
+    <label for="validationCustom10" class="form-label">Display(inch):</label>
+    <input type="number" step="0.01" class="form-control newstyle" id="validationCustom10" name="displaysize" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom11" class="form-label">Resolution Width:</label>
+    <input type="number" class="form-control newstyle" id="validationCustom11" name="resolutionwidth" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom12" class="form-label">Resolution Height:</label>
+    <input type="number" class="form-control newstyle" id="validationCustom12" name="resolutionheight" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom13" class="form-label">OS:</label>
+      <select name="os" id="validationCustom13" class="form-select newstyle" required>
+      <option selected disabled value="">Select an option</option>
+       <option>Windows</option>
+      <option>MacOS</option>
+      <option>LINUX</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom14" class="form-label">Warranty (yrs):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom14" name="warranty" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+    <div class="mb-2">
+    <label for="validationCustom15" class="form-label">Upload Images:</label>
+    <input type="file" class="form-control newstyle" id="validationCustom15" accept=".jpg,.jpeg,.png,.webp" name="image" multiple required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div>
+    <button class="button sell">Sell</button>
+  </div>
+</form>
+</div>
+</section>

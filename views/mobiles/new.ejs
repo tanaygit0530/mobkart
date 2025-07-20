@@ -1,0 +1,201 @@
+<% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="/stylesheet/newstyle.css">
+<link rel="stylesheet" href="/stylesheet/style.css">
+  <section class="section">
+  <div class="container">
+<form class="needs-validation" action="/mobkart/mobile" method="POST" novalidate enctype="multipart/form-data">
+  <div class="mb-2">
+    <label for="validationCustom01" class="form-label">Brand:</label>
+    <input type="text" class="form-control newstyle" id="validationCustom01" name="brand" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom02" class="form-label">Model:</label>
+    <input type="text" class="form-control newstyle" id="validationCustom02" name="model" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom03" class="form-label">Price:</label>
+    <input type="number" class="form-control newstyle" id="validationCustom03" name="price" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom04" class="form-label">Is Your Model compatible to 5g network?</label>
+    <select name="has5g" id="validationCustom04" class="form-select newstyle" required>
+      <option>Select an option</option>
+       <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom05" class="form-label">Does your Model has NFC?</label>
+    <select name="hasNfc" id="validationCustom05" class="form-select newstyle" required>
+      <option>Select an option</option>
+       <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom06" class="form-label">Does your Model has IRL Blaster?(Infrared Blaster)</label>
+    <select name="hasIrBlaster" id="validationCustom06" class="form-select newstyle" required>
+      <option>Select an option</option>
+       <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom07" class="form-label">Processor:</label>
+    <input type="text" class="form-control newstyle" id="validationCustom07" name="processorBrand" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom07" class="form-label">Battery Capacity(mAH):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom07" name="batteryCapacity" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom08" class="form-label">Is Fast Charging Available?</label>
+    <select name="fastChargingAvailable" id="validationCustom08" class="form-select newstyle" required>
+      <option>Select an option</option>
+       <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom10" class="form-label">Ram Capacity(gb):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom10" name="ramCapacity" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom11" class="form-label">Internal Memmory(gb):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom11" name="internalMemory" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom12" class="form-label">Display (inch):</label>
+    <input type="number" step="0.01" class="form-control newstyle" id="validationCustom12" name="screenSize" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom13" class="form-label">Refresh Rate(Hz):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom13" name="refreshRate" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom14" class="form-label">Number of Cameras In Back(Rear camera):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom14" name="numRearCameras" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom15" class="form-label">Number of Cameras In Front(Front camera):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom15" name="numFrontCameras" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom16" class="form-label">Operating System:</label>
+    <select name="os" id="validationCustom16" class="form-select newstyle" required>
+      <option>Select an option</option>
+       <option>Android</option>
+      <option>IOS</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom17" class="form-label">Rear Camera(MP):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom17" name="primaryCameraRear" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom18" class="form-label">Front Camera(MP):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom18" name="primaryCameraFront" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom19" class="form-label">Is Memory Can be Extendable?</label>
+    <select name="extendedMemoryAvailable" id="validationCustom19" class="form-select newstyle" required>
+      <option>Select an option</option>
+       <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+    <div class="mb-2">
+    <label for="validationCustom20" class="form-label">Memmory Extended Upto(gb):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom20" name="extendedUpto" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+  <label for="validationCustom21" class="form-label">Number of Processor Cores:</label>
+  <input type="number" step="0.01" class="form-control newstyle" id="validationCustom21" name="numCores" required>
+</div>
+
+<div class="mb-2">
+  <label for="validationCustom22" class="form-label">Processor Speed (GHz):</label>
+  <input type="number" step="0.1" class="form-control newstyle" id="validationCustom22" name="processorSpeed" required>
+      <div class="valid-feedback">
+      Looks good!
+    </div>
+</div>
+  <div class="mb-2">
+    <label for="validationCustom23" class="form-label">Charger Speed(W):</label>
+    <input type="number" class="form-control newstyle" id="validationCustom23" name="fastCharging" required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div class="mb-2">
+    <label for="validationCustom24" class="form-label">Upload Images:</label>
+    <input type="file" class="form-control newstyle" id="validationCustom24" accept=".jpg,.jpeg,.png,.webp" name="image" multiple required>
+    <div class="valid-feedback">
+      Looks good!
+    </div>
+  </div>
+  <div>
+    <button class="button sell">Sell</button>
+  </div>
+</form>
+</div>
+</section>
+
+

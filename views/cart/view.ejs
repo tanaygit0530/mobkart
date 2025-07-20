@@ -1,0 +1,55 @@
+<% layout('layout/boilerplate') %>
+<style>
+/* Grid layout to force footer down */
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header, main, footer */
+  min-height: 100vh;
+}
+
+/* Optional: stretch main to take all space */
+.wrapper main {
+  padding-bottom: 30px; /* prevent overlap */
+}
+
+
+</style>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">🛒 Your Cart</h2>
+
+  <% if (cart.length === 0) { %>
+    <div class="alert alert-info text-center">Your cart is empty.</div>
+  <% } else { %>
+    <% let grandTotal = 0; %>
+
+    <% cart.forEach(item => { 
+         let subtotal = item.price * item.quantity;
+         grandTotal += subtotal;
+    %>
+      <div class="card mb-4 shadow-sm border-0">
+        <div class="row g-0">
+          <div class="col-md-4 d-flex align-items-center justify-content-center bg-light">
+            <img src="<%= item.image || 'https://via.placeholder.com/150' %>" class="img-fluid p-3 rounded" alt="<%= item.model %>">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title text-primary"><%= item.brand %> - <%= item.model %></h5>
+              <p class="card-text mb-1">Category: <strong class="text-capitalize"><%= item.category %></strong></p>
+              <p class="card-text mb-1">Price: ₹<strong><%= item.price %></strong></p>
+              <p class="card-text mb-1">Quantity: <strong><%= item.quantity %></strong></p>
+              <p class="card-text">Subtotal: ₹<strong><%= subtotal %></strong></p>
+              <form action="/mobkart/cart/<%= item.productId %>/remove" method="POST" class="mt-2">
+                <button class="btn btn-outline-danger btn-sm">Remove</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %>
+
+    <div class="text-end">
+      <h4 class="text-success">Total: ₹<%= grandTotal %></h4>
+      <a href="/checkout" class="btn btn-outline-success btn-lg mt-2">Proceed to Checkout</a>
+    </div>
+  <% } %>
+</div>

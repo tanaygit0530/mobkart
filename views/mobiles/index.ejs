@@ -1,0 +1,80 @@
+<% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="/stylesheet/index.css">
+<section class="py-5">
+  <div class="container">
+    <div class="header">
+        <h1 class="text-center mb-4 head"> <strong>Find Your Perfect</strong><strong style="color: cyan;"> Mobile</strong></h1>
+        <h2 class="text-center subhead"><strong> Discover the Latest Smartphone with Best Deals</strong></h2>
+        <h2 class="text-center subhead">
+        <strong>Have an old mobile lying around? Sell it on MobKart with ease and get the best value!</strong><br>
+        <a class="icon-link icon-link-hover link-info link-underline-info p-3 link-underline-opacity-25 mt-4" href="/mobkart/mobile/new" style="border: 1px solid; border-radius: 50px;">
+        Sell Mobile
+        <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+        </svg>
+      </a>
+        <form action="/mobkart/mobiles" method="GET" class="d-flex justify-content-center mt-5">
+  <input 
+    type="text" 
+    name="search" 
+    placeholder="Search by brand or model..." 
+    class="form-control w-50 me-2"
+    value="<%= typeof search !== 'undefined' ? search : '' %>"
+  >
+  <button class="btn btn-outline-info" type="submit">Search</button>
+</form>
+<% if (mobiles.length === 0) { %>
+  <div class="col-12 text-center">
+    <h4 class="text-muted">No mobiles found for "<%= search %>"</h4>
+  </div>
+<% } %>
+      </h2>
+
+
+
+    </div>
+
+    <div class="row mt-5">
+      <% for (let mobile of mobiles) { %>
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 glow-card">
+<img 
+  src="<%= mobile.images[0]?.url || '/images/default.jpg' %>" 
+  alt="<%= mobile.model %>" 
+  style="width: 100%; height: 250px; object-fit: contain; background-color: white; border-top-left-radius: 1rem; border-top-right-radius: 1rem;">
+
+
+
+
+            <div class="card-body">
+              <h6 class="card-subtitle mb-2">
+                <a href="/mobkart/mobile/<%= mobile._id %>" class="text-decoration-none" style="color: cyan;"><%= mobile.model %></a>
+              </h6>
+
+              <ul class="list-unstyled mt-3 mb-0">
+                <li><strong class="text-muted">Price:</strong> <strong>₹<%= mobile.price %></strong></li>
+                <li><strong class="text-muted">5G:</strong> <strong><%= mobile.has5g ? 'Yes' : 'No' %></strong></li>
+                <li><strong class="text-muted">RAM:</strong> <strong><%= mobile.ramCapacity %> GB</strong></li>
+                <li><strong class="text-muted">Internal:</strong><strong> <%= mobile.internalMemory %> GB</strong></li>
+              </ul>
+              <% if(mobile.author){ %>
+              <strong>By: <%= mobile.author.username %></strong>
+              <% }else{ %>
+              <strong>By: Unknown</strong>
+
+                <% } %>
+            
+            </div>
+
+            <div class="card-footer bg-transparent border-top-0">
+              <a href="/mobkart/mobile/<%= mobile._id %>" class="btn btn-outline-info w-100 mb-3">View Details</a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</section>
+
+
+

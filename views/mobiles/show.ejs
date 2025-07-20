@@ -1,0 +1,139 @@
+<% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="/stylesheet/mobshow.css">
+<link rel="stylesheet" href="/stylesheet/starability.css">
+<style>
+  .card {
+  border: none;
+  border-radius: 1rem;
+  background-color: #121212;
+  color: #ffffff;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+}
+
+img {
+  object-fit: contain;
+  max-height: 300px;
+}
+
+.btn {
+  font-weight: 600;
+}
+
+</style>
+<div class="container my-5 px-3">
+  <div class="card border-0 shadow-lg rounded-4 p-4 text-white bg-dark">
+
+    <div class="row g-5 flex-column flex-md-row effect mt-0">
+      <div class="col-md-5 text-center mt-5">
+        <% if (mobile.images && mobile.images.length > 0) { %>
+          <% mobile.images.forEach(image => { %>
+            <img src="<%= image.url %>" alt="<%= mobile.model %>" class="img-fluid rounded border border-info mb-3" style="max-height: 300px;">
+          <% }) %>
+        <% } else { %>
+          <p class="text-muted">No image available</p>
+        <% } %>
+        <% if (mobile.author && currentUser && mobile.author.equals(currentUser._id)) { %>
+          <div class="d-grid gap-2 mt-4">
+            <a href="/mobkart/mobile/<%= mobile._id %>/edit" class="btn btn-outline-primary rounded-pill">Edit</a>
+            <form action="/mobkart/mobile/<%= mobile._id %>?_method=DELETE" method="POST" class="d-grid">
+              <button class="btn btn-outline-danger rounded-pill">Delete</button>
+            </form>
+          </div>
+        <% } %>
+        <form action="/mobkart/mobile/cart/<%= mobile._id %>/add" method="POST" class="mt-3 mb-5">
+          <div class="d-grid">
+            <button type="submit" class="btn btn-outline-warning rounded-pill">
+              Add to Cart
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-7">
+        <h3 class="fw-bold text-info"><%= mobile.brand %> - <%= mobile.model %></h3>
+        <hr class="border-info">
+        <div class="row">
+          <div class="col-sm-6">
+            <p><strong>Price:</strong> ₹<%= mobile.price %></p>
+            <p><strong>5G:</strong> <%= mobile.has5g ? 'Yes' : 'No' %></p>
+            <p><strong>NFC:</strong> <%= mobile.hasNfc ? 'Yes' : 'No' %></p>
+            <p><strong>IR Blaster:</strong> <%= mobile.hasIrBlaster ? 'Yes' : 'No' %></p>
+            <p><strong>Processor:</strong> <%= mobile.processorBrand %></p>
+            <p><strong>Cores:</strong> <%= mobile.numCores %> @ <%= mobile.processorSpeed %> GHz</p>
+          </div>
+          <div class="col-sm-6">
+            <p><strong>Battery:</strong> <%= mobile.batteryCapacity %> mAh</p>
+            <p><strong>Charging:</strong> <%= mobile.fastCharging %>W</p>
+            <p><strong>RAM:</strong> <%= mobile.ramCapacity %> GB</p>
+            <p><strong>Storage:</strong> <%= mobile.internalMemory %> GB</p>
+            <p><strong>Display:</strong> <%= mobile.screenSize %>” @ <%= mobile.refreshRate %>Hz</p>
+            <p><strong>OS:</strong> <%= mobile.os %></p>
+          </div>
+        </div>
+
+        <div class="row mt-3 mb-3">
+          <div class="col-sm-6">
+            <p><strong>Rear Cameras:</strong> <%= mobile.numRearCameras %> (<%= mobile.primaryCameraRear %> MP)</p>
+          </div>
+          <div class="col-sm-6">
+            <p><strong>Front Camera:</strong> <%= mobile.primaryCameraFront %> MP</p>
+          </div>
+          <div class="col-12">
+            <p><strong>Expandable Storage:</strong> <%= mobile.extendedMemoryAvailable ? `Yes (up to ${mobile.extendedUpto}GB)` : 'No' %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Form -->
+  <div class="mt-5">
+    <h4 class="fw-bold text-info mb-3">Leave a Review</h4>
+    <form action="/mobkart/mobile/<%= mobile._id %>/reviews" method="POST">
+      <div class="mb-3">
+        <label for="body" class="form-label">Your Review</label>
+        <textarea class="form-control effect" id="body" name="review[body]" rows="3" required></textarea>
+      </div>
+
+      <h5 class="mb-2">Rating:</h5>
+      <fieldset class="starability-coinFlip mb-3">
+        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+        <label for="first-rate1" title="Terrible">1 star</label>
+        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+        <label for="first-rate2" title="Not good">2 stars</label>
+        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+        <label for="first-rate3" title="Average">3 stars</label>
+        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+        <label for="first-rate4" title="Very good">4 stars</label>
+        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+        <label for="first-rate5" title="Amazing">5 stars</label>
+      </fieldset>
+
+      <button class="btn btn-outline-info but">Submit Review</button>
+    </form>
+  </div>
+
+  <!-- Review List -->
+  <div class="mt-4">
+    <% if (mobile.reviews && mobile.reviews.length > 0) { %>
+      <h5 class="fw-semibold mb-3 text-info">User Reviews:</h5>
+      <% for (let review of mobile.reviews) { %>
+        <div class="border p-3 rounded mb-3 bg-dark effect">
+          <strong class="text-muted"><%= review.author.username || 'Anonymous' %></strong>
+          <fieldset class="starability-result" data-rating="<%= review.rating %>">
+            Rated: <%= review.rating %> stars
+          </fieldset>
+          <p class="mb-0 mt-2 text-light"><%= review.body %></p>
+          <% if(currentUser && review.author.equals(currentUser._id)){ %>
+            <form action="/mobkart/mobile/<%= mobile._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST" class="mt-2">
+              <button class="btn btn-sm btn-outline-danger">Delete</button>
+            </form>
+          <% } %>
+        </div>
+      <% } %>
+    <% } else { %>
+      <p class="text-muted">No reviews yet. Be the first to review!</p>
+    <% } %>
+  </div>
+</div>
