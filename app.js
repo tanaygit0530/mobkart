@@ -72,6 +72,9 @@ app.get('/mobkart',(req,res) => {
 })
 
 
+app.get('/', (req, res) => {
+  res.redirect('/mobkart');
+});
 
 // All Mobile Model
 app.get('/mobkart/mobile',wrapAsync(async (req,res) => {
