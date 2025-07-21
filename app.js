@@ -24,13 +24,12 @@ const upload = multer({ storage });
 const GoogleStrategy = require('./config/passportconfig')
 
 
-
 const mongoose = require('mongoose');
 const laptop = require('./models/laptop');
+const MongoStore = require('connect-mongo');
 const dbUrl =  process.env.DB_URL || 'mongodb://127.0.0.1:27017/mobkart';
-mongoose.connect(dbUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect(dbUrl,{
+
 })
 .then(() => {
   console.log("✅ Connected to MongoDB");
@@ -38,12 +37,27 @@ mongoose.connect(dbUrl, {
 .catch(err => {
   console.error("❌ MongoDB connection error:", err);
 });
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  secret: 'thisisnotagoodsecret',
+  touchAfter: 24 * 60 * 60 // in seconds
+});
 
+store.on("error",function(e) {
+  console.log(e)
+})
 
 app.use(session({
+  store: store,
+  name: 'session',
   secret: 'thisisnotagoodsecret',
   resave: false,
   saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7, 
+    maxAge: 1000 * 60 * 60 * 24 * 7
+  }
 }));
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
