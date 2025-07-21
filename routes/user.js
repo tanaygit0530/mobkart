@@ -6,7 +6,7 @@ const flash = require('connect-flash');
 
 
 router.get('/mobkart/register',(req,res) => {
-  res.render('user/register');
+  res.render('user/Register');
 })
 router.post('/mobkart/register',async(req,res) => {
   try{
