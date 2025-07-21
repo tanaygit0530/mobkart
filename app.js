@@ -91,10 +91,19 @@ app.get('/', (req, res) => {
 });
 
 // All Mobile Model
-app.get('/mobkart/mobile',wrapAsync(async (req,res) => {
-  const mobiles = await Mob.find({}).populate('author');
-  res.render('mobiles/index',{mobiles});
+app.get('/mobkart/mobile', wrapAsync(async (req, res) => {
+  const { search } = req.query;
+
+  let mobiles;
+  if (search) {
+    mobiles = await Mob.find({ model: new RegExp(search, 'i') }).populate('author');
+  } else {
+    mobiles = await Mob.find({}).populate('author'); // show all mobiles
+  }
+
+  res.render('mobiles/index', { mobiles, search: search || '' });
 }));
+
 app.get('/mobkart/mobiles', async (req, res) => {
   const { search } = req.query;
   let query = {};
