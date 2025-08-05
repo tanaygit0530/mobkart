@@ -451,7 +451,17 @@ app.get('/placeorder', isLoggedIn, async (req, res) => {
   res.render('placeorder/view',  );
 });
 
+//Payment Route
+app.get('/mobkart/payment', isLoggedIn, async (req, res) => {
+  const cart = req.user.cart;
+  let subtotal = 0;
+  for (let item of cart) {
+    subtotal += item.price * item.quantity;
+  }
+  const total = subtotal + 50;
 
+  res.render('payment/view', { cart, subtotal, total });
+});
 
 
 

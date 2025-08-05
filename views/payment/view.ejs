@@ -1,0 +1,57 @@
+<% layout('layout/boilerplate') %>
+<body class="bg-gray-100 text-gray-800">
+    <div class="max-w-4xl mx-auto p-6 mt-10 bg-white rounded-lg shadow-lg">
+      <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Complete Your Payment</h1>
+
+
+      <div class="mb-8">
+        <h2 class="text-xl font-semibold mb-2">Order Summary</h2>
+        <ul class="divide-y">
+          <% cartItems.forEach(item => { %>
+            <li class="flex justify-between py-2">
+              <span><%= item.name %> (x<%= item.quantity %>)</span>
+              <span>₹<%= item.price * item.quantity %></span>
+            </li>
+          <% }) %>
+        </ul>
+        <div class="flex justify-between font-semibold mt-4 border-t pt-2">
+          <span>Total:</span>
+          <span>₹<%= totalAmount %></span>
+        </div>
+      </div>
+
+
+      <form action="/payment/process" method="POST" class="space-y-4">
+        <h2 class="text-xl font-semibold mb-2">Card Details</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Cardholder Name</label>
+            <input type="text" name="cardName" class="w-full border rounded px-3 py-2" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Card Number</label>
+            <input type="text" name="cardNumber" maxlength="16" class="w-full border rounded px-3 py-2" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Expiry Date</label>
+            <input type="text" name="expiry" placeholder="MM/YY" class="w-full border rounded px-3 py-2" required />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">CVV</label>
+            <input type="text" name="cvv" maxlength="3" class="w-full border rounded px-3 py-2" required />
+          </div>
+        </div>
+
+
+        <div class="mt-6">
+          <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 rounded hover:bg-blue-700 transition">
+            Pay ₹<%= totalAmount %>
+          </button>
+        </div>
+      </form>
+
+      <div class="text-center mt-6">
+        <a href="/cart" class="text-blue-500 hover:underline">← Go back to cart</a>
+      </div>
+    </div>
+  </body>
