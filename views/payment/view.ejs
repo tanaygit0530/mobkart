@@ -1,57 +1,72 @@
 <% layout('layout/boilerplate') %>
-<body class="bg-black text-white">
-    <div class="max-w-4xl mx-auto p-6 mt-10 bg-white rounded-lg shadow-lg">
-      <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Complete Your Payment</h1>
 
+<!-- Optional: Add this custom CSS for glowing effect -->
+<style>
+  body {
+    background-color: #0e1117;
+    color: #ffffff;
+  }
 
-      <div class="mb-8">
-        <h2 class="text-xl font-semibold mb-2">Order Summary</h2>
-        <ul class="divide-y">
-          <% cart.forEach(item => { %>
-            <li class="flex justify-between py-2">
-              <span><%= item.name %> (x<%= item.quantity %>)</span>
-              <span>₹<%= item.price * item.quantity %></span>
-            </li>
-          <% }) %>
-        </ul>
-        <div class="flex justify-between font-semibold mt-4 border-t pt-2">
-          <span>Total:</span>
-          <span>₹<%= total %></span>
+  .glow-card {
+    background-color: #161b22;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    border-radius: 15px;
+  }
+
+  .glow-title {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="glow-card p-4">
+    <h1 class="text-center glow-title mb-4">Complete Your Payment</h1>
+
+    <h4 class="text-info">Order Summary</h4>
+    <ul class="list-group mb-3">
+      <% user.cart.items.forEach(item => { %>
+        <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+          <%= item.product.name %>
+          <span>₹<%= item.product.price %></span>
+        </li>
+      <% }) %>
+      <li class="list-group-item bg-dark text-white d-flex justify-content-between font-weight-bold border-top pt-2">
+        <span>Total:</span>
+        <span>₹<%= total %></span>
+      </li>
+    </ul>
+
+    <!-- Payment Method -->
+    <form action="/placeorder" method="POST" class="mt-4">
+      <h4 class="mb-3">Card Details</h4>
+      <div class="mb-3">
+        <label class="form-label">Cardholder Name</label>
+        <input type="text" name="cardName" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Card Number</label>
+        <input type="text" name="cardNumber" maxlength="16" class="form-control" required />
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Expiry Date</label>
+          <input type="text" name="expiry" placeholder="MM/YY" class="form-control" required />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">CVV</label>
+          <input type="text" name="cvv" maxlength="3" class="form-control" required />
         </div>
       </div>
+      <button type="submit" class="btn btn-primary w-100 mt-3">
+        Pay ₹<%= total %>
+      </button>
+    </form>
 
-
-      <form action="/placeholder" method="POST" class="space-y-4">
-        <h2 class="text-xl font-semibold mb-2">Card Details</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium">Cardholder Name</label>
-            <input type="text" name="cardName" class="w-full border rounded px-3 py-2" required />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Card Number</label>
-            <input type="text" name="cardNumber" maxlength="16" class="w-full border rounded px-3 py-2" required />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">Expiry Date</label>
-            <input type="text" name="expiry" placeholder="MM/YY" class="w-full border rounded px-3 py-2" required />
-          </div>
-          <div>
-            <label class="block text-sm font-medium">CVV</label>
-            <input type="text" name="cvv" maxlength="3" class="w-full border rounded px-3 py-2" required />
-          </div>
-        </div>
-
-
-        <div class="mt-6">
-          <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 rounded hover:bg-blue-700 transition">
-            Pay ₹<%= total %>
-          </button>
-        </div>
-      </form>
-
-      <div class="text-center mt-6">
-        <a href="/cart" class="text-blue-500 hover:underline">← Go back to cart</a>
-      </div>
+    <div class="text-center mt-4">
+      <a href="/mobakart/mobile/cart" class="text-decoration-none text-light">← Go back to cart</a>
     </div>
-  </body>
+
+  </div>
+</div>
