@@ -26,7 +26,7 @@
 
     <h4 class="text-info">Order Summary</h4>
     <ul class="list-group mb-3">
-      <% user.cart.items.forEach(item => { %>
+      <% cart.forEach(item => { %>
         <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
           <%= item.product.name %>
           <span>₹<%= item.product.price %></span>
