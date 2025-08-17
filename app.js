@@ -22,7 +22,7 @@ const multer = require('multer');
 const { storage, cloudinary } = require('./cloudinary'); 
 const upload = multer({ storage });
 const GoogleStrategy = require('./config/passportconfig')
-
+const Order = require('./models/order');
 
 const mongoose = require('mongoose');
 const laptop = require('./models/laptop');
@@ -429,27 +429,84 @@ app.post('/mobkart/cart/:id/remove', isLoggedIn, async (req, res) => {
 });
 // Checkout Route
 
-app.get('/checkout', isLoggedIn, async (req, res) => {
-  const cart = req.user.cart; 
-  let subtotal = 0;
-  for (let item of cart) {
-    subtotal += item.price * item.quantity;
-  }
-  const total = subtotal + 50; 
+app.post('/checkout', isLoggedIn, async (req, res) => {
+  try {
+    const user = req.user;
+
+    // Assume cart is stored in user schema
+    const items = user.cart.map(item => ({
+      productId: item._id,
+      model: item.model,
+      brand: item.brand,
+      price: item.price,
+      quantity: item.quantity,
+      category: item.category,
+      image: item.image
+    }));
+
+    const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+    const newOrder = new Order({
+      user: user._id,
+      items,
+      total
+    });
+
+    await newOrder.save();
+
+    // Clear user cart
+    user.cart = [];
+    await user.save();
+
+    res.redirect('/mobkart/account');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error placing order');
+  } 
 
   res.render('checkout/view', { cart, subtotal, total });
 });
-app.get('/placeorder',(req,res) => {
+app.post('/placeorder',(req,res) => {
   res.render('placeorder/view')
 })
-app.post('/checkout', isLoggedIn, async (req, res) => {
-  const { fullName, phone, address, city, state, pincode } = req.body;
-  req.session.shippingDetails = { fullName, phone, address, city, state, pincode };
-  res.redirect('/placeorder');
+
+
+app.post('/mobkart/checkout', isLoggedIn, async (req, res) => {
+  try {
+    const user = req.user;
+
+    // Assume cart is stored in user schema
+    const items = user.cart.map(item => ({
+      productId: item._id,
+      model: item.model,
+      brand: item.brand,
+      price: item.price,
+      quantity: item.quantity,
+      category: item.category,
+      image: item.image
+    }));
+
+    const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+    const newOrder = new Order({
+      user: user._id,
+      items,
+      total
+    });
+
+    await newOrder.save();
+
+    // Clear user cart
+    user.cart = [];
+    await user.save();
+
+    res.redirect('/mobkart/account');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error placing order');
+  }
 });
-app.get('/placeorder', isLoggedIn, async (req, res) => {
-  res.render('placeorder/view',  );
-});
+
 
 //Payment Route
 app.get('/mobkart/payment', isLoggedIn, async (req, res) => {
@@ -463,6 +520,27 @@ app.get('/mobkart/payment', isLoggedIn, async (req, res) => {
   res.render('payment/view', { cart, subtotal, total });
 });
 
+// Account Routes
+app.get('/mobkart/account', isLoggedIn, async (req, res) => {
+    try {
+    const orders = await Order.find({ user: req.user._id }).sort({ createdAt: -1 });
+
+    const totalOrders = orders.length;
+    const totalSpent = orders.reduce((sum, o) => sum + o.total, 0);
+
+    res.render("account/view", {
+      currentUser: req.user,
+      orders,
+      totalOrders,
+      totalSpent
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading account page");
+  }
+});
+
+
 
 
 app.use((err,req,res,next) => {
@@ -471,8 +549,9 @@ app.use((err,req,res,next) => {
   res.status(status).render('error',{err});
 })
 app.all(/(.*)/, (req, res, next) => {
+  console.log("404 caught:", req.method, req.originalUrl);
   next(new AppError(404,'Page Not found'));
-})
+});
 app.listen(3000, () => {
   console.log("Connnected to the Portal 3000!!!");
 })

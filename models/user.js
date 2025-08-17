@@ -30,6 +30,6 @@ cart: [
     image: String
   }
 ]
-})
+},{ timestamps: true });
 User.plugin(localmongoosepassport);
 module.exports = mongoose.model('User',User);
