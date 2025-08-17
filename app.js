@@ -428,54 +428,19 @@ app.post('/mobkart/cart/:id/remove', isLoggedIn, async (req, res) => {
   res.redirect('/mobkart/cart');
 });
 // Checkout Route
-
-app.post('/checkout', isLoggedIn, async (req, res) => {
-  try {
-    const user = req.user;
-
-    // Assume cart is stored in user schema
-    const items = user.cart.map(item => ({
-      productId: item._id,
-      model: item.model,
-      brand: item.brand,
-      price: item.price,
-      quantity: item.quantity,
-      category: item.category,
-      image: item.image
-    }));
-
-    const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
-
-    const newOrder = new Order({
-      user: user._id,
-      items,
-      total
-    });
-
-    await newOrder.save();
-
-    // Clear user cart
-    user.cart = [];
-    await user.save();
-
-    res.redirect('/mobkart/account');
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Error placing order');
-  } 
+// Checkout page (GET)
+app.get('/checkout', isLoggedIn, (req, res) => {
+  const cart = req.user.cart || [];
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = subtotal; // can add tax/shipping later
 
   res.render('checkout/view', { cart, subtotal, total });
 });
-app.post('/placeorder',(req,res) => {
-  res.render('placeorder/view')
-})
 
-
-app.post('/mobkart/checkout', isLoggedIn, async (req, res) => {
+app.post('/checkout', isLoggedIn, async (req, res) => {
   try {
-    const user = req.user;
+    const user = await User.findById(req.user._id);
 
-    // Assume cart is stored in user schema
     const items = user.cart.map(item => ({
       productId: item._id,
       model: item.model,
@@ -488,15 +453,15 @@ app.post('/mobkart/checkout', isLoggedIn, async (req, res) => {
 
     const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
-    const newOrder = new Order({
-      user: user._id,
+    // Push into user's orders
+    user.orders.push({
       items,
-      total
+      totalAmount: total,
+      date: new Date(),
+      status: "Completed"
     });
 
-    await newOrder.save();
-
-    // Clear user cart
+    // Clear cart
     user.cart = [];
     await user.save();
 
@@ -506,6 +471,12 @@ app.post('/mobkart/checkout', isLoggedIn, async (req, res) => {
     res.status(500).send('Error placing order');
   }
 });
+
+app.post('/placeorder',(req,res) => {
+  res.render('placeorder/view')
+})
+
+
 
 
 //Payment Route
