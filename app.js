@@ -443,6 +443,7 @@ app.post('/checkout', isLoggedIn, async (req, res) => {
 
     const items = user.cart.map(item => ({
       productId: item._id,
+      name: `${item.brand} ${item.model}`,
       model: item.model,
       brand: item.brand,
       price: item.price,
@@ -453,13 +454,13 @@ app.post('/checkout', isLoggedIn, async (req, res) => {
 
     const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
-    // Push into user's orders
-    user.orders.push({
+    // Save in Order collection
+    const order = new Order({
+      user: req.user._id,
       items,
-      totalAmount: total,
-      date: new Date(),
-      status: "Completed"
+      total
     });
+    await order.save();
 
     // Clear cart
     user.cart = [];
@@ -471,6 +472,7 @@ app.post('/checkout', isLoggedIn, async (req, res) => {
     res.status(500).send('Error placing order');
   }
 });
+
 
 app.post('/placeorder',(req,res) => {
   res.render('placeorder/view')
@@ -510,6 +512,7 @@ app.get('/mobkart/account', isLoggedIn, async (req, res) => {
     res.status(500).send("Error loading account page");
   }
 });
+
 
 
 
